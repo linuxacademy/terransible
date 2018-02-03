@@ -296,21 +296,21 @@ EOD
 
 #-------OUTPUTS ------------
 
-output "database name" {
+output "Database Name" {
   value = "${var.dbname}"
 }
 
-output "database_hostname" {
+output "Database Hostname" {
   value = "${aws_db_instance.db.endpoint}"
 }
 
-output "database username" {
+output "Database Username" {
   value = "${var.dbuser}"
 }
 
-output "database password" {
+output "Database Password" {
   value = "${var.dbpassword}"
 }
-output "wordpress address" {
-  value = "${aws_instance.dev.public_ip}"
+output "Wordpress Address" {
+  value = "http://${aws_instance.dev.public_ip}"
 }
