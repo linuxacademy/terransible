@@ -4,15 +4,15 @@
   remote_user: ec2-user
   tasks:
     - name: Install Apache.
-      yum: name={{ item }} state=present
-      with_items:
-      - httpd
-      - php
-      - php-mysql
+      yum: 
+        name: ['httpd','php','php-mysql'] 
+        state: present
     - name: Download WordPress
-      get_url: url=http://wordpress.org/wordpress-latest.tar.gz dest=/var/www/html/wordpress.tar.gz force=yes
+      get_url: url=http://wordpress.org/wordpress-5.0.2.tar.gz dest=/var/www/html/wordpress.tar.gz force=yes
     - name: Extract WordPress
       command: "tar xzf /var/www/html/wordpress.tar.gz -C /var/www/html --strip-components 1"
+      args:
+        warn: no
     - name: Make my directory tree readable
       file:
         path: /var/www/html/
@@ -21,4 +21,7 @@
         owner: apache
         group: apache
     - name: Make sure Apache is started now and at boot.
-      service: name=httpd state=started enabled=yes
+      service: 
+       name: httpd 
+       state:  started 
+       enabled: yes
